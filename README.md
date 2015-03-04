@@ -1,6 +1,6 @@
 ####What is it?
 
-A [PoshCI](https://github.com/PoshCI/PoshCI) step that pushes one or more Chocolatey packages to a .nupkg source
+A [PoshCI](https://github.com/PoshCI/PoshCI) step that pushes one or more [Chocolatey](https://chocolatey.org/) packages to a .nupkg source
 
 ####How do I install it?
 
