@@ -6,10 +6,10 @@
 		<authors>Chris Dostert</authors>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>
-			A PoshCI step that pushes one or more Chocolatey packages to a .nupkg source
+			A PoshDevOps task that pushes one or more Chocolatey packages to a .nupkg source
 		</description>
-		<tags>Powershell PoshCI NuGet Package .nupkg</tags>
-		<projectUrl>https://github.com/PoshCI/PushChocolateyPackage</projectUrl>
+		<tags>Powershell PoshDevOps NuGet Package .nupkg</tags>
+		<projectUrl>https://github.com/PoshDevOps/PushChocolateyPackage</projectUrl>
 	</metadata>	
 	<files>
 		<file src="**" target="tools\PushChocolateyPackage" exclude="**\.nuspec"/>

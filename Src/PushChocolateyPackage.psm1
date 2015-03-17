@@ -1,7 +1,7 @@
 # halt immediately on any errors which occur in this module
 $ErrorActionPreference = 'Stop'
 
-function Invoke-CIStep(
+function Invoke-PoshDevOpsTask(
 [String[]]
 [ValidateCount(1,[Int]::MaxValue)]
 [Parameter(
@@ -63,4 +63,4 @@ $nugetExecutable $($nugetParameters|Out-String)
 
 }
 
-Export-ModuleMember -Function Invoke-CIStep
+Export-ModuleMember -Function Invoke-PoshDevOpsTask
