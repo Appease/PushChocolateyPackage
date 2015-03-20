@@ -5,7 +5,7 @@ A [PoshDevOps](https://github.com/PoshDevOps/PoshDevOps) task that pushes one or
 ####How do I install it?
 
 ```PowerShell
-Add-PoshDevOpsTask -Name "YOUR-CISTEP-NAME" -PackageId "PushChocolateyPackage"
+Add-PoshDevOpsTask -Name "YOUR-TASK-NAME" -PackageId "PushChocolateyPackage"
 ```
 
 ####What parameters are available?
