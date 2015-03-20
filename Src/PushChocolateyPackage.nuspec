@@ -6,7 +6,7 @@
 		<authors>Chris Dostert</authors>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>
-			A PoshDevOps task that pushes one or more Chocolatey packages to a .nupkg source
+			A Poshtask that pushes one or more Chocolatey packages to a .nupkg source
 		</description>
 		<tags>Powershell PoshDevOps NuGet Package .nupkg</tags>
 		<projectUrl>https://github.com/PoshDevOps/PushChocolateyPackage</projectUrl>
