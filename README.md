@@ -57,6 +57,16 @@ A String representing the api key to use to authenticate against the .nupkg sour
 $ApiKey
 ```
 
+#####PathToChocolateyExe
+A String representing the path to Chocolatey.exe . If not found, latest version will be installed. 
+```PowerShell
+[String]
+[ValidateNotNullOrEmpty()]
+[Parameter(
+    ValueFromPipelineByPropertyName=$true)]
+$PathToChocolateyExe = 'C:\ProgramData\chocolatey\bin\chocolatey.exe'
+```
+
 ####What's the build status?
 ![](https://ci.appveyor.com/api/projects/status/lk1l562hwcr87jbu?svg=true)
 

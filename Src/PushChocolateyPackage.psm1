@@ -1,6 +1,19 @@
 # halt immediately on any errors which occur in this module
 $ErrorActionPreference = 'Stop'
 
+function EnsureChocolateyInstalled(
+[String]
+[ValidateNotNullOrEmpty()]
+$PathToChocolateyExe){
+    # install chocolatey
+    try{
+        Get-Command $PathToChocolateyExe -ErrorAction Stop | Out-Null
+    }
+    catch{             
+        iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))
+    }   
+}
+
 function Invoke-PoshDevOpsTask(
 [String[]]
 [ValidateCount(1,[Int]::MaxValue)]
@@ -27,7 +40,15 @@ $SourceUrl = 'https://chocolatey.org/api/v2/',
 [String]
 [Parameter(
     ValueFromPipelineByPropertyName = $true)]
-$ApiKey){
+$ApiKey,
+
+[String]
+[ValidateNotNullOrEmpty()]
+[Parameter(
+    ValueFromPipelineByPropertyName=$true)]
+$PathToChocolateyExe = 'C:\ProgramData\chocolatey\bin\chocolatey.exe'){
+
+    EnsureChocolateyInstalled -PathToChocolateyExe $PathToChocolateyExe
     
     $NupkgFilePaths = gci -Path $IncludeNupkgFilePath -Filter '*.nupkg' -File -Exclude $ExcludeFileNameLike -Recurse:$Recurse | ?{!$_.PSIsContainer} | %{$_.FullName}
         
@@ -39,19 +60,18 @@ $($NupkgFilePaths | Out-String)
 
     foreach($nupkgFilePath in $NupkgFilePaths)
     {
-        $nugetExecutable = 'nuget'
-        $nugetParameters = @('push',$nupkgFilePath,'-Source',$SourceUrl)
+        $chocoParameters = @('push',$nupkgFilePath,'-Source',$SourceUrl)
 
         if($ApiKey){
-            $nugetParameters = $nugetParameters + @('-ApiKey',$ApiKey)
+            $chocoParameters += @('-ApiKey',$ApiKey)
         }
 
 Write-Debug `
 @"
 Invoking nuget:
-$nugetExecutable $($nugetParameters|Out-String)
+$PathToChocolateyExe $($chocoParameters|Out-String)
 "@
-        & $nugetExecutable $nugetParameters
+        & $PathToChocolateyExe $chocoParameters
         
         # handle errors
         if ($LastExitCode -ne 0) {
