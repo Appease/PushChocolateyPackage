@@ -45,7 +45,7 @@ A String representing the url of the .nupkg source being pushed to.
 [String]
 [Parameter(
     ValueFromPipelineByPropertyName = $true)]
-$SourceUrl = 'https://chocolatey.org/api/v2/'
+$SourceUrl = 'https://chocolatey.org/'
 ```
 
 #####ApiKey
