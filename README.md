@@ -1,72 +1,33 @@
+![](https://ci.appveyor.com/api/projects/status/lk1l562hwcr87jbu?svg=true)
+
 ####What is it?
 
-A [PoshDevOps](https://github.com/PoshDevOps/PoshDevOps) task that pushes one or more [Chocolatey](https://chocolatey.org/) packages to a .nupkg source
+An [Appease](http://appease.io) task template that pushes one or more [Chocolatey](https://chocolatey.org/) packages to a .nupkg source
 
 ####How do I install it?
 
 ```PowerShell
-Add-PoshDevOpsTask -Name "YOUR-TASK-NAME" -PackageId "PushChocolateyPackage"
+Add-AppeaseTask `
+    -DevOpName YOUR-DEVOP-NAME `
+    -Name YOUR-TASK-NAME `
+    -TemplateId PushChocolateyPackage
 ```
 
-####What parameters are available?
+####What parameters are required?
 
 #####IncludeNupkgFilePath
-A String[] representing included .nupkg file paths. Either literal or wildcard paths are supported.
-```PowerShell
-[String[]]
-[ValidateCount(1,[Int]::MaxValue)]
-[Parameter(
-    Mandatory=$true,
-    ValueFromPipelineByPropertyName = $true)]
-$IncludeNupkgFilePath
-```
+description: a `string[]` representing included .nupkg file paths. Either literal or wildcard paths are supported.
+
+####What parameters are optional?
 
 #####ExcludeFileNameLike
-A String[] representing .nupkg file names to exclude. Either literal or wildcard names are supported.
-```PowerShell
-[String[]]
-[Parameter(
-    ValueFromPipelineByPropertyName = $true)]
-$ExcludeFileNameLike
-```
+description: a `string[]` representing .nupkg file names to exclude. Either literal or wildcard names are supported.
 
 #####Recurse
-A Switch representing whether to recursively search directories below $IncludeNupkgFilePath.
-```PowerShell
-[Switch]
-[Parameter(
-    ValueFromPipelineByPropertyName = $true)]
-$Recurse
-```
+description: a `Switch` representing whether to recursively search directories below $IncludeNupkgFilePath.
 
 #####SourceUrl
-A String representing the url of the .nupkg source being pushed to.
-```PowerShell
-[String]
-[Parameter(
-    ValueFromPipelineByPropertyName = $true)]
-$SourceUrl = 'https://chocolatey.org/'
-```
+description: a `string` representing the url of the .nupkg source being pushed to.
 
 #####ApiKey
-A String representing the api key to use to authenticate against the .nupkg source being pushed to.
-```PowerShell
-[String]
-[Parameter(
-    ValueFromPipelineByPropertyName = $true)]
-$ApiKey
-```
-
-#####PathToChocolateyExe
-A String representing the path to Chocolatey.exe . If not found, latest version will be installed. 
-```PowerShell
-[String]
-[ValidateNotNullOrEmpty()]
-[Parameter(
-    ValueFromPipelineByPropertyName=$true)]
-$PathToChocolateyExe = 'C:\ProgramData\chocolatey\bin\chocolatey.exe'
-```
-
-####What's the build status?
-![](https://ci.appveyor.com/api/projects/status/lk1l562hwcr87jbu?svg=true)
-
+description: a `string` representing the api key to use to authenticate against the .nupkg source being pushed to.
